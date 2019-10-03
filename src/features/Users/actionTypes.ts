@@ -1,0 +1,5 @@
+const USERS_GET: string = "USERS_GET";
+const USERS_GET_SUCCESS: string = "USERS_GET_SUCCESS";
+const USERS_GET_FAIL: string = "USERS_GET_FAIL";
+
+export default { USERS_GET, USERS_GET_SUCCESS, USERS_GET_FAIL}
