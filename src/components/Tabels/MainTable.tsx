@@ -24,8 +24,13 @@ export interface MainTableColumns {
   props?: object;
 }
 
+// TODO: https://github.com/microsoft/TypeScript/issues/15300
+// export interface MainTableData {
+//     [key: string]: string | number;
+// }
+
 export interface MainTableData {
-  [key: string]: string | number;
+  [key: string]: any;
 }
 
 interface MainTableProps {

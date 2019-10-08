@@ -1,14 +1,15 @@
 import { connect } from 'react-redux'
 import List from "./List";
 import usersActions  from "./actions";
-import { MainTableData } from "../../components/Tabels/MainTable";
-import {usersSelector} from "./selectors";
+import { usersSelector } from "./selectors";
+import { State } from "../../reducer";
+import {UsersDataState} from "./reducer";
 
-const mapStateToProps = (state: any): { users: Array<MainTableData>} => ({
+const mapStateToProps = (state: State): { users: Array<UsersDataState>} => ({
     users: usersSelector(state)
 })
 
-const mapDefaultProps: {getUsers: () => any} = {
+const mapDefaultProps = {
     getUsers: usersActions.getUsers
 }
 

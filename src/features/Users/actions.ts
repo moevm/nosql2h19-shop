@@ -1,10 +1,11 @@
 import {usersTypes} from "./index";
+import { UsersState } from "./reducer";
 
 const getUsers = () => ({
     type: usersTypes.USERS_GET
 });
 
-const getUsersSuccess = ( data: object ) => ({
+const getUsersSuccess = ( data: Array<UsersState> ) => ({
     type: usersTypes.USERS_GET_SUCCESS,
     payload: {
         data
@@ -16,4 +17,4 @@ const getUsersFail = (error: object) => ({
     error
 });
 
-export default { getUsers, getUsersSuccess, getUsersFail}
+export default { getUsers, getUsersSuccess, getUsersFail }
