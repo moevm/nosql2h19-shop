@@ -227,9 +227,9 @@
 * **name** *String*
     Полное имя пользователя. V = 2b*25 = 50b
 * **age** *Number*
-    Возраст пользователя. V = 2b*20 = 40b
+    Возраст пользователя. V = 4b
 * **sex** *String*
-    Пол пользователя. V = 2b*6 = 12b
+    Пол пользователя. V = 2b (ожна буква м/ж)
 * **spendings** *Number*
     Общие траты пользователя за всё время. V = 2b*25 = 50b
 * **accounts** *String[]*
@@ -255,29 +255,31 @@
 * **accountId** *String*
     Номер счёта с которого проводилась транзакция. V = 2b*20 = 40b
 * **amount** *Number*
-    Размер транзакции. V = 2b*4 = 40b
+    Размер транзакции. V = 2b*4 = 8b
 * **crated** *Date*
     Дата проведения транзакции. V = 8b
     
     
 ###  "Чистый" объём
-user_V = 192b
+user_V = 106b
 
-account_V = 120b 
+account_V = 40b 
 
-trnsaction_V = 188b
+trnsaction_V = 76b
 
 ### Фактический объём
-user_V = 192b + 40b\*accounts_N
+user_V = 146b + 40b\*accounts_N
 
 account_V = 120b + 40b\*transactions_N
 
-trnsaction_V = 188b
+trnsaction_V = 156b
 
 ### Избыточность 
-(user_V\*user_N + account_V\*account_N + transaction_V\*transaction_N) \/
-((user_V + 40b\*accounts_N)\*user_N + (account_V+40b\*transactions_N)\*account_N + transaction_V\*transaction_N)
-
+Предположим, что в среднем у пользователя 3 счета, и он совершил за некоторое 
+время по 100 транзакций на каждый счёт. За N примем количество пользователей.\
+`clear_V = N*user_V + N*account_V*3 + N*transaction_V*3*100 = 23026*N b` \
+`fact_V = 28226*N b` \
+*Итого:* 1.225
 ### Направление роста
 Основной причиной роста объёма данных БД являются транзакции. При добавлении одной транзакции создаётся новый документ транзакции (268b) плюс добавление новой записи в список транзакций счёта (40b). В итоге 308b на одну запись. При расчёте направления роста можно не учитывать новых пользователей и их счета, т.к  в сравнении с количеством транзакций их вклад не велик
 
@@ -312,7 +314,7 @@ firestore.collection('accounts').where('userId', '==', [USER_ID]).get()
 * **sex** *varchar*
     Пол пользователя. V = 2b (ожна буква м/ж)
 * **spendings** *int* 
-    Общие траты пользователя за всё время. V = 4b
+    Общие траты пользователя за всё время. V = 2b*25 = 50b
   
     
 #### user_accounts
@@ -327,7 +329,7 @@ firestore.collection('accounts').where('userId', '==', [USER_ID]).get()
 * **userId** *varchar*
     Идентификатор владельца счёта. V = 2b*20 = 40b
 * **mony** *int*
-    Объем средств на счету. V = 4b
+    Объем средств на счету. V = 2b*15 = 40b
 
 #### account_transactions
 * **accountId** *varchar*
@@ -341,27 +343,29 @@ firestore.collection('accounts').where('userId', '==', [USER_ID]).get()
 * **category** *varchar*
     Ктегория покупки. V = 2b*10 = 20b
 * **amount** *int*
-    Размер транзакции. V = 4b
+    Размер транзакции. V = 2b*4 = 8b
 * **crated** *date*
     Дата проведения транзакции. V = 8b
     
     
 ###  "Чистый" объём
-user_V = 100b
-account_V = 84b
-transaction_V = 72b
+user_V = 106b \
+account_V = 40b \
+transaction_V = 76b 
 
 ### Фактический объём
-user_V = 100b
-user_accounts_V = 80b\*accounts_N
-account_V = 84b
-account_transactions_V = 80b\*transactions_N
-transaction_V = 72b
+user_V = 146b \
+user_accounts_V = 80b\*accounts_N \
+account_V = 120b \
+account_transactions_V = 80b\*transactions_N\
+transaction_V = 76b
 
 ### Избыточность 
-(user_V\*user_N + account_V\*account_N + transaction_V\*transaction_N) \/
-(user_V\*user_N + 80b\*accounts_N + account_V\*account_N + 80b\*transactions_N + transaction_V\*transaction_N)
-
+Предположим, что в среднем у пользователя 3 счета, и он совершил за некоторое 
+время по 100 транзакций на каждый счёт. За N примем количество пользователей.\
+`clear_V = N*user_V + N*account_V*3 + N*transaction_V*3*100 = 23026*N b` \
+`fact_V = N*user_V + N*account_V*3 + N*user_accounts_V*3 + N*transaction_V*3*100 + N*account_transactions_V*300 = 47546*N b` \
+*Итого:* 2.064
 
 ### Запросы
 * Запрос на получение списка пользователей
@@ -384,8 +388,9 @@ FROM accounts
 WHERE userId = [USER_ID]
 ```
 
-##Вывод
+## Вывод
 Можно сделать следующие выводы
+
 * Для необходимых запросов в SQL необходимо делать дополнительные таблицы связности
 * Таблицы свзяности занимают больше места, чем просто массив хранящий идентификаторы,
  т.к массив хранится прямо в документе пользователя 
