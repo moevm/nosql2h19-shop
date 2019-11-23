@@ -12,11 +12,26 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "/",
         "destination": "/index.html"
       },
       {
         "source": "/users",
+        "function": "app"
+      },
+      {
+        "source": "/user",
+        "function": "app"
+      },
+      {
+        "source": "/transactions",
+        "function": "app"
+      },
+      {
+        "source": "/all-time",
+        "function": "app"
+      },      {
+        "source": "/period",
         "function": "app"
       }
     ]
