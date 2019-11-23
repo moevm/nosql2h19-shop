@@ -17,16 +17,17 @@ firebase.initializeApp(firebaseConfig);
 let firestore = firebase.firestore();
 
 export const getUsers = () => {
-    return firestore.collection('users')
-        .get()
-        .then(snapshot => {
-            let items = [];
-            snapshot.docs.forEach(doc => {
-                items.push({...doc.data(), id: doc.id});
-            });
-            return items
-        })
-    // return fetchAPI.get(
-    //     `/users`
-    // );
+    console.log('get')
+    // return firestore.collection('users')
+    //     .get()
+    //     .then(snapshot => {
+    //         let items = [];
+    //         snapshot.docs.forEach(doc => {
+    //             items.push({...doc.data(), id: doc.id});
+    //         });
+    //         return items
+    //     })
+    return fetchAPI.get(
+        `/users`
+    );
 };
