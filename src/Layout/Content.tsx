@@ -1,5 +1,5 @@
 import React from 'react';
-import UsersList from '../features/Users'
+import { UsersList, User } from '../features/Users'
 import styled from "styled-components";
 import { Route, Switch } from 'react-router-dom'
 import { routesConst } from '../constants';
@@ -16,6 +16,11 @@ const Content: React.FC<ContentProps> = () => {
         <Wrapper>
             <Switch>
                 <Route path={routesConst.PATH_USERS} component={UsersList} exact/>
+                <Route path={`${routesConst.PATH_USERS}/:id`} exact
+                       render={(props) => (
+                           <User id={props.match.params.id} {...props} />
+                       )}
+                />
                 <Route path="*" component={() => <div>Not found</div>} exact/>
             </Switch>
         </Wrapper>

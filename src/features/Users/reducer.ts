@@ -1,14 +1,20 @@
 import {usersTypes} from "./index";
 
+export enum Gender {
+  MALE = 'male',
+  FEMALE = 'female'
+}
+
 export interface UsersDataState {
-  id: number,
-  fullName: string,
-  sex: string,
-  age: number
+  id: string,
+  name: string,
+  sex: Gender,
+  age: number,
+  spendings: number
 }
 
 export interface UsersState {
-  data: object,
+  data: Array<UsersDataState>,
   isRequesting: boolean
 }
 
@@ -23,7 +29,7 @@ interface UsersAction {
 }
 
 const initialState: UsersState = {
-  data: {},
+  data: [],
   isRequesting: false
 };
 
