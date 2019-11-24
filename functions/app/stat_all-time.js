@@ -18,7 +18,9 @@ router.post('/', (req, res) => {
           categories[category] = categories[category] ? categories[category] : 0;
           categories[category] += 1
         })
-       return Object.entries(categories)
+       return Object
+          .entries(categories)
+          .map(categoryItem => ({category: categoryItem[0], quantity: categoryItem[1]}))
      }).then(categories => {
     res.json({categories});
   })
