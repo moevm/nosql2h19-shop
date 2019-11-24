@@ -1,4 +1,4 @@
-import {usersTypes} from "./index";
+import * as usersTypes from "./actionTypes";
 
 export enum Gender {
   MALE = 'male',
@@ -36,6 +36,7 @@ const initialState: UsersState = {
 export default (state: UsersState = initialState, action: UsersAction) => {
   const { type, payload = {}, error } = action;
   switch (type) {
+    case usersTypes.USER_GET:
     case usersTypes.USERS_GET:
       return {
         ...state,
@@ -47,6 +48,13 @@ export default (state: UsersState = initialState, action: UsersAction) => {
         isRequesting: false,
         data: payload.data
       };
+    case usersTypes.USER_GET_SUCCESS:
+      return {
+        ...state,
+        isRequesting: false,
+        data: [...state.data, payload.data]
+      };
+    case usersTypes.USER_GET_FAIL:
     case usersTypes.USERS_GET_FAIL:
       return {
         ...state,

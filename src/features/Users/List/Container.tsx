@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import List from "./List";
-import usersActions  from "../actions";
+import * as usersActions  from "../actions";
 import {usersIsRequesting, usersSelector} from "../selectors";
 import { State } from "../../../reducer";
 import {UsersDataState} from "../reducer";

@@ -1,20 +1,35 @@
-import {usersTypes} from "./index";
-import { UsersState } from "./reducer";
+import * as usersTypes from "./actionTypes";
+import {UsersDataState, UsersState} from "./reducer";
 
-const getUsers = () => ({
+export const getUsers = () => ({
     type: usersTypes.USERS_GET
 });
 
-const getUsersSuccess = ( data: Array<UsersState> ) => ({
+export const getUsersSuccess = ( data: Array<UsersState> ) => ({
     type: usersTypes.USERS_GET_SUCCESS,
     payload: {
         data
     }
 });
 
-const getUsersFail = (error: object) => ({
+export const getUsersFail = (error: object) => ({
     type: usersTypes.USERS_GET_FAIL,
     error
 });
 
-export default { getUsers, getUsersSuccess, getUsersFail }
+export const getUser = (id?: string) => ({
+    type: usersTypes.USER_GET,
+    payload: { id }
+});
+
+export const getUserSuccess = ( data: Array<UsersDataState> ) => ({
+    type: usersTypes.USER_GET_SUCCESS,
+    payload: {
+        data
+    }
+});
+
+export const getUserFail = (error: object) => ({
+    type: usersTypes.USER_GET_FAIL,
+    error
+});
