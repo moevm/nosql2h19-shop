@@ -40,22 +40,22 @@ export const getUserStatAllTime = () => {
     setTimeout(() => {
       resolve({
         "categories": [
-          [
-            "Супермаркеты",
-            1
-          ],
-          [
-            "Перевод",
-            1
-          ],
-          [
-            "Другое",
-            1
-          ],
-          [
-            "Аптека",
-            1
-          ]
+          {
+            "category": "Супермаркеты",
+            "quantity": 1
+          },
+          {
+            "category": "Перевод",
+            "quantity": 1
+          },
+          {
+            "category": "Другое",
+            "quantity": 1
+          },
+          {
+            "category": "Аптека",
+            "quantity": 1
+          }
         ]
       })
     }, 500)
@@ -67,18 +67,18 @@ export const getUserStatAllPeriod = () => {
     setTimeout(() => {
       resolve({
         "categories": [
-          [
-            "Супермаркеты",
-            1
-          ],
-          [
-            "Перевод",
-            1
-          ],
-          [
-            "Другое",
-            1
-          ]
+          {
+            "category": "Супермаркеты",
+            "quantity": 1
+          },
+          {
+            "category": "Перевод",
+            "quantity": 1
+          },
+          {
+            "category": "Другое",
+            "quantity": 1
+          }
         ]
       })
     }, 500)
