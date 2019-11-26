@@ -15,9 +15,9 @@ export function* getUsers() {
     }
 }
 
-export function* getUser() {
+export function* getUser({ payload: { id }}) {
     try {
-        const { user } = yield mocks.getUser();
+        const { user } = yield fetchReqAsync(API.getUser, { id });
         yield put(usersActions.getUserSuccess(user));
     } catch (error) {
         yield put(usersActions.getUserFail(error));

@@ -17,12 +17,12 @@ export const getUsersFail = (error: object) => ({
     error
 });
 
-export const getUser = (id?: string) => ({
+export const getUser = (id: string) => ({
     type: usersTypes.USER_GET,
     payload: { id }
 });
 
-export const getUserSuccess = ( data: Array<UsersDataState> ) => ({
+export const getUserSuccess = ( data: UsersDataState ) => ({
     type: usersTypes.USER_GET_SUCCESS,
     payload: {
         data

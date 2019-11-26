@@ -1,91 +1,108 @@
-[debug] [2019-11-26T16:15:20.539Z] ----------------------------------------------------------------------
-[debug] [2019-11-26T16:15:20.542Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\79042\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
-[debug] [2019-11-26T16:15:20.542Z] CLI Version:   7.4.0
-[debug] [2019-11-26T16:15:20.542Z] Platform:      win32
-[debug] [2019-11-26T16:15:20.542Z] Node Version:  v10.16.3
-[debug] [2019-11-26T16:15:20.543Z] Time:          Tue Nov 26 2019 19:15:20 GMT+0300 (GMT+03:00)
-[debug] [2019-11-26T16:15:20.543Z] ----------------------------------------------------------------------
+[debug] [2019-11-26T20:43:37.777Z] ----------------------------------------------------------------------
+[debug] [2019-11-26T20:43:37.780Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\79042\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-11-26T20:43:37.780Z] CLI Version:   7.4.0
+[debug] [2019-11-26T20:43:37.780Z] Platform:      win32
+[debug] [2019-11-26T20:43:37.781Z] Node Version:  v10.16.3
+[debug] [2019-11-26T20:43:37.782Z] Time:          Tue Nov 26 2019 23:43:37 GMT+0300 (GMT+03:00)
+[debug] [2019-11-26T20:43:37.782Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2019-11-26T16:15:20.553Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-11-26T16:15:20.554Z] > authorizing via signed-in user
-[debug] [2019-11-26T16:15:20.554Z] [iam] checking project lab-project-aa6c1 for permissions ["firebase.projects.get"]
-[debug] [2019-11-26T16:15:20.555Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2019-11-26T16:15:20.556Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2019-11-26T20:43:37.805Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-26T20:43:37.806Z] > authorizing via signed-in user
+[debug] [2019-11-26T20:43:37.806Z] [iam] checking project lab-project-aa6c1 for permissions ["firebase.projects.get"]
+[debug] [2019-11-26T20:43:37.808Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-11-26T20:43:37.809Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
  <request body omitted>
-[debug] [2019-11-26T16:15:20.733Z] <<< HTTP RESPONSE 200
-[debug] [2019-11-26T16:15:20.749Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lab-project-aa6c1:testIamPermissions  
+[debug] [2019-11-26T20:43:38.148Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-26T20:43:38.157Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lab-project-aa6c1:testIamPermissions  
 
-[debug] [2019-11-26T16:15:21.958Z] <<< HTTP RESPONSE 200
-[debug] [2019-11-26T16:15:21.961Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-project-aa6c1  
+[debug] [2019-11-26T20:43:39.526Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-26T20:43:39.528Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-project-aa6c1  
  
-[debug] [2019-11-26T16:15:22.509Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-26T20:43:40.143Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from 'D:\nosql2h19-shop'...
 [info] 
-[debug] [2019-11-26T16:15:22.526Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-project-aa6c1/webApps/-/config  
+[debug] [2019-11-26T20:43:40.168Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-project-aa6c1/webApps/-/config  
  
 [warn] !  Your requested "node" version "8" doesn't match your global version "10"
 [info] +  functions: Emulator started at http://localhost:5001
-[debug] [2019-11-26T16:15:23.394Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-26T20:43:41.165Z] <<< HTTP RESPONSE 200
 [info] i  functions: Watching "D:\nosql2h19-shop\functions" for Cloud Functions...
 [info] i  hosting: Serving hosting files from: build
 [info] +  hosting: Local server: http://localhost:5000
-[debug] [2019-11-26T16:15:23.968Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
-[debug] [2019-11-26T16:15:23.968Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
-[debug] [2019-11-26T16:15:23.972Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
-[debug] [2019-11-26T16:15:23.973Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
-[debug] [2019-11-26T16:15:23.974Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T20:43:42.500Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
+[debug] [2019-11-26T20:43:42.501Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-11-26T20:43:42.508Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-26T20:43:42.513Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T20:43:42.515Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
 [info] +  functions[app]: http function initialized (http://localhost:5001/lab-project-aa6c1/us-central1/app).
 [info] i  functions[onAccountCreate]: function ignored because the firestore emulator does not exist or is not running.
 [info] i  functions[onTransactionCreate]: function ignored because the firestore emulator does not exist or is not running.
 [info] [hosting] Rewriting /api/users to http://localhost:5001/lab-project-aa6c1/us-central1/app for local Function app
-[debug] [2019-11-26T16:15:31.368Z] Accepted request GET /lab-project-aa6c1/us-central1/app/api/users --> app
-[debug] [2019-11-26T16:15:31.973Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
+[debug] [2019-11-26T20:43:59.108Z] Accepted request GET /lab-project-aa6c1/us-central1/app/api/users --> app
+[debug] [2019-11-26T20:43:59.991Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
 [info] i  functions: Beginning execution of "app"
-[debug] [2019-11-26T16:15:31.974Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
-[debug] [2019-11-26T16:15:31.977Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
-[debug] [2019-11-26T16:15:31.979Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
-[debug] [2019-11-26T16:15:31.980Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
-[debug] [2019-11-26T16:15:32.518Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
-[debug] [2019-11-26T16:15:32.519Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
-[debug] [2019-11-26T16:15:32.519Z] [runtime-status] Running app in mode HTTPS {}
-[debug] [2019-11-26T16:15:32.527Z] {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\10372"}
-[debug] [2019-11-26T16:15:32.529Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\10372"}
-[debug] [2019-11-26T16:15:32.536Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-11-26T20:43:59.993Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-11-26T20:44:00.001Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-26T20:44:00.006Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T20:44:00.008Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T20:44:00.779Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-11-26T20:44:00.779Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-11-26T20:44:00.779Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-11-26T20:44:00.793Z] {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\1812"}
+[debug] [2019-11-26T20:44:00.797Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\1812"}
+[debug] [2019-11-26T20:44:00.806Z] [runtime-status] Ephemeral server used! {}
 [info] >  get users
-[debug] [2019-11-26T16:15:33.027Z] [runtime-status] Ephemeral server survived. {}
+[debug] [2019-11-26T20:44:01.413Z] [runtime-status] Ephemeral server survived. {}
 [info] i  functions: Finished "app" in ~1s
-[info] [hosting] Rewriting /api/users to http://localhost:5001/lab-project-aa6c1/us-central1/app for local Function app
-[debug] [2019-11-26T16:15:33.688Z] Accepted request GET /lab-project-aa6c1/us-central1/app/api/users --> app
-[debug] [2019-11-26T16:15:34.362Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
+[info] [hosting] Rewriting /api/user to http://localhost:5001/lab-project-aa6c1/us-central1/app for local Function app
+[debug] [2019-11-26T20:44:04.056Z] Accepted request POST /lab-project-aa6c1/us-central1/app/api/user --> app
+[info] [hosting] Rewriting /api/transactions to http://localhost:5001/lab-project-aa6c1/us-central1/app for local Function app
+[debug] [2019-11-26T20:44:04.068Z] Accepted request POST /lab-project-aa6c1/us-central1/app/api/transactions --> app
+[debug] [2019-11-26T20:44:04.803Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
 [info] i  functions: Beginning execution of "app"
-[debug] [2019-11-26T16:15:34.363Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
-[debug] [2019-11-26T16:15:34.366Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
-[debug] [2019-11-26T16:15:34.368Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
-[debug] [2019-11-26T16:15:34.370Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
-[debug] [2019-11-26T16:15:34.879Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
-[debug] [2019-11-26T16:15:34.880Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
-[debug] [2019-11-26T16:15:34.880Z] [runtime-status] Running app in mode HTTPS {}
-[debug] [2019-11-26T16:15:34.886Z] {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\11528"}
-[debug] [2019-11-26T16:15:34.889Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\11528"}
-[debug] [2019-11-26T16:15:34.896Z] [runtime-status] Ephemeral server used! {}
-[info] >  get users
-[debug] [2019-11-26T16:15:35.343Z] [runtime-status] Ephemeral server survived. {}
+[debug] [2019-11-26T20:44:04.804Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-11-26T20:44:04.806Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
+[info] i  functions: Beginning execution of "app"
+[debug] [2019-11-26T20:44:04.807Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-11-26T20:44:04.811Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-26T20:44:04.814Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-26T20:44:04.814Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T20:44:04.816Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T20:44:04.816Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T20:44:04.818Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T20:44:05.491Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-11-26T20:44:05.491Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-11-26T20:44:05.491Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-11-26T20:44:05.493Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-11-26T20:44:05.493Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-11-26T20:44:05.493Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-11-26T20:44:05.501Z] {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\9348"}
+[debug] [2019-11-26T20:44:05.504Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\9348"}
+[debug] [2019-11-26T20:44:05.508Z] {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\9920"}
+[debug] [2019-11-26T20:44:05.510Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\9920"}
+[debug] [2019-11-26T20:44:05.540Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-11-26T20:44:05.544Z] [runtime-status] Ephemeral server used! {}
+[info] >  get user
+[info] >  L1NuOy93H9bl36Fh9sSy
+[info] >  get user transaction
+[debug] [2019-11-26T20:44:06.150Z] [runtime-status] Ephemeral server survived. {}
+[debug] [2019-11-26T20:44:06.170Z] [runtime-status] Ephemeral server survived. {}
 [info] i  functions: Finished "app" in ~1s
-[info] [hosting] Rewriting /api/users to http://localhost:5001/lab-project-aa6c1/us-central1/app for local Function app
-[debug] [2019-11-26T16:17:10.501Z] Accepted request GET /lab-project-aa6c1/us-central1/app/api/users --> app
-[debug] [2019-11-26T16:17:11.115Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
+[info] i  functions: Finished "app" in ~1s
+[info] [hosting] Rewriting /api/stat/all-time to http://localhost:5001/lab-project-aa6c1/us-central1/app for local Function app
+[debug] [2019-11-26T20:44:11.967Z] Accepted request POST /lab-project-aa6c1/us-central1/app/api/stat/all-time --> app
+[debug] [2019-11-26T20:44:12.707Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
 [info] i  functions: Beginning execution of "app"
-[debug] [2019-11-26T16:17:11.116Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
-[debug] [2019-11-26T16:17:11.119Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
-[debug] [2019-11-26T16:17:11.122Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
-[debug] [2019-11-26T16:17:11.123Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
-[debug] [2019-11-26T16:17:11.652Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
-[debug] [2019-11-26T16:17:11.652Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
-[debug] [2019-11-26T16:17:11.652Z] [runtime-status] Running app in mode HTTPS {}
-[debug] [2019-11-26T16:17:11.662Z] {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\11384"}
-[debug] [2019-11-26T16:17:11.664Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\11384"}
-[debug] [2019-11-26T16:17:11.672Z] [runtime-status] Ephemeral server used! {}
-[info] >  get users
-[debug] [2019-11-26T16:17:12.132Z] [runtime-status] Ephemeral server survived. {}
+[debug] [2019-11-26T20:44:12.709Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-11-26T20:44:12.714Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-26T20:44:12.717Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T20:44:12.719Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T20:44:13.399Z] [runtime-status] Trigger "app" has been found, beginning invocation! {}
+[debug] [2019-11-26T20:44:13.399Z] [runtime-status]  {"httpsTrigger":{},"name":"app","entryPoint":"app"}
+[debug] [2019-11-26T20:44:13.400Z] [runtime-status] Running app in mode HTTPS {}
+[debug] [2019-11-26T20:44:13.409Z] {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\4532"}
+[debug] [2019-11-26T20:44:13.411Z] [functions] Runtime ready! Sending request! {"socketPath":"\\\\?\\pipe\\D:\\nosql2h19-shop\\functions\\4532"}
+[debug] [2019-11-26T20:44:13.448Z] [runtime-status] Ephemeral server used! {}
+[debug] [2019-11-26T20:44:14.095Z] [runtime-status] Ephemeral server survived. {}
 [info] i  functions: Finished "app" in ~1s

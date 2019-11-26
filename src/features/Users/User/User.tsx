@@ -69,8 +69,8 @@ const columns: Array<MainTableColumns> = [
 
 export interface UserPropsInterface extends ListContainerStateToProps {
   id: string;
-  getUser: () => void;
-  getUserTransactions: () => void;
+  getUser: (id: string) => void;
+  getUserTransactions: (id: string) => void;
 }
 
 const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
@@ -83,8 +83,8 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
   history
 }) => {
   useEffect(() => {
-    getUser();
-    getUserTransactions();
+    getUser(id);
+    getUserTransactions(id);
   }, []);
   const classes = useStyles();
   return (
@@ -113,7 +113,7 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
         <MainTable
           data={transactions.map(transaction => ({
             ...transaction,
-            date: new Date(transaction.created._seconds).toLocaleString("ru", {
+            date: new Date(transaction.created._seconds*1000).toLocaleString("ru", {
               year: "numeric",
               month: "numeric",
               day: "numeric"

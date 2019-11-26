@@ -1,12 +1,10 @@
 export async function fetchReqAsync(func, ...res) {
+    console.log(res)
     const response = await func(...res);
     if (response.ok) {
         return await response.json();
     } else {
-        if (response.status === 401) {
-            window.localStorage.removeItem("ACCESS_TOKEN");
-            window.location.reload();
-        } else throw response;
+        throw response;
     }
 }
 

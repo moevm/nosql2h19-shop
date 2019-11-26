@@ -18,7 +18,7 @@ export interface TransactionsState {
 }
 
 interface TransactionsPayload {
-  data?: object,
+  data?:  Array<TransactionDataState>,
 }
 
 interface TransactionsAction {

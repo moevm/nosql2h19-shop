@@ -1,8 +1,9 @@
 import * as transactionTypes from "./actionTypes";
 import {TransactionDataState} from "./reducer";
 
-export const getTransactionsUserAll = () => ({
-    type: transactionTypes.TRANSACTIONS_USER_ALL_GET
+export const getTransactionsUserAll = (id: string) => ({
+    type: transactionTypes.TRANSACTIONS_USER_ALL_GET,
+    payload: { id }
 });
 
 export const getTransactionsUserAllSuccess = ( data: Array<TransactionDataState> ) => ({

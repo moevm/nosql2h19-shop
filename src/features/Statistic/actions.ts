@@ -1,8 +1,9 @@
 import * as statisticTypes from "./actionTypes";
 import {StatisticDataState} from "./reducer";
 
-export const getStatisticUserAll = () => ({
-    type: statisticTypes.STATISTIC_USER_ALL_GET
+export const getStatisticUserAll = (id: string) => ({
+    type: statisticTypes.STATISTIC_USER_ALL_GET,
+    payload: { id }
 });
 
 export const getStatisticUserAllSuccess = ( data: Array<StatisticDataState> ) => ({
