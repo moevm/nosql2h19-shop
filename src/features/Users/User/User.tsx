@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { UsersDataState } from "../reducer";
 import {
   createStyles,
   makeStyles,
@@ -16,6 +15,7 @@ import { ListContainerStateToProps } from "./Container";
 import MainTable, {
   MainTableColumns
 } from "../../../components/Tabels/MainTable";
+import routes from "../../../constants/routes";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -74,6 +74,7 @@ export interface UserPropsInterface extends ListContainerStateToProps {
 }
 
 const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
+  id,
   user,
   getUser,
   getUserTransactions,
@@ -93,7 +94,12 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
           <ArrowBack />
         </IconButton>
         <Typography variant="h5">{user.name}</Typography>
-        <Button variant="contained">Статистика</Button>
+        <Button
+          variant="contained"
+          onClick={() => history.push(`${routes.PATH_STATISTIC}/${id}`)}
+        >
+          Статистика
+        </Button>
       </Header>
       <Info>
         <div>Возраст:</div>
@@ -108,9 +114,9 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
           data={transactions.map(transaction => ({
             ...transaction,
             date: new Date(transaction.created._seconds).toLocaleString("ru", {
-              year: 'numeric',
-              month: 'numeric',
-              day: 'numeric',
+              year: "numeric",
+              month: "numeric",
+              day: "numeric"
             })
           }))}
           columns={columns}

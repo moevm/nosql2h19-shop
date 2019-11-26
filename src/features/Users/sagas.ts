@@ -6,7 +6,7 @@ import * as mocks from "../../mocks";
 
 export function* getUsers() {
     try {
-        const { users } = yield mocks.getUsers();
+        const { users } = yield API.getUsers();
         yield put(usersActions.getUsersSuccess(users));
     } catch (error) {
         console.log(error);

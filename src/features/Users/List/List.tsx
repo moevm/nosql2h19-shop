@@ -7,6 +7,7 @@ import MainTable, {
 } from "../../../components/Tabels/MainTable";
 import { ListContainerStateToProps } from "./Container";
 import {UsersDataState} from "../reducer";
+import routes from "../../../constants/routes";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -60,7 +61,7 @@ const List: React.FC<ListProps & RouteComponentProps<any>> = ({
           data={users}
           columns={columns}
           isRequesting={isRequesting}
-          onClick={(item: UsersDataState) => history.push(`users/${item.id}`)}
+          onClick={(item: UsersDataState) => history.push(`${routes.PATH_USERS}/${item.id}`)}
         />
       </Paper>
     </>

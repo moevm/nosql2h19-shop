@@ -1,0 +1,85 @@
+[debug] [2019-11-26T12:48:19.567Z] ----------------------------------------------------------------------
+[debug] [2019-11-26T12:48:19.570Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\79042\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-11-26T12:48:19.570Z] CLI Version:   7.4.0
+[debug] [2019-11-26T12:48:19.570Z] Platform:      win32
+[debug] [2019-11-26T12:48:19.570Z] Node Version:  v10.16.3
+[debug] [2019-11-26T12:48:19.574Z] Time:          Tue Nov 26 2019 15:48:19 GMT+0300 (GMT+03:00)
+[debug] [2019-11-26T12:48:19.574Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-11-26T12:48:19.594Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-26T12:48:19.595Z] > authorizing via signed-in user
+[debug] [2019-11-26T12:48:19.595Z] [iam] checking project lab-project-aa6c1 for permissions ["firebase.projects.get"]
+[debug] [2019-11-26T12:48:19.596Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-11-26T12:48:19.597Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-11-26T12:48:20.013Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-26T12:48:20.031Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lab-project-aa6c1:testIamPermissions  
+
+[debug] [2019-11-26T12:48:21.579Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-26T12:48:21.582Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-project-aa6c1  
+ 
+[debug] [2019-11-26T12:48:22.333Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'D:\nosql2h19-shop'...
+[info] 
+[debug] [2019-11-26T12:48:22.347Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-project-aa6c1/webApps/-/config  
+ 
+[warn] !  Your requested "node" version "8" doesn't match your global version "10"
+[info] +  functions: Emulator started at http://localhost:5001
+[debug] [2019-11-26T12:48:23.284Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "D:\nosql2h19-shop\functions" for Cloud Functions...
+[info] i  hosting: Serving hosting files from: build
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2019-11-26T12:48:23.951Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
+[debug] [2019-11-26T12:48:23.951Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-11-26T12:48:24.024Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-26T12:48:24.028Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T12:48:24.030Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[warn] !  Error: Cannot find module 'csvtojson'
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:636:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:562:25)
+    at Module.require (internal/modules/cjs/loader.js:692:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at Object.<anonymous> (D:\nosql2h19-shop\functions\app\import.js:3:13)
+    at Module._compile (internal/modules/cjs/loader.js:778:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+[warn] !  We were unable to load your functions code. (see above)
+[debug] [2019-11-26T12:50:09.347Z] ----------------------------------------------------------------------
+[debug] [2019-11-26T12:50:09.349Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\79042\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-11-26T12:50:09.349Z] CLI Version:   7.4.0
+[debug] [2019-11-26T12:50:09.349Z] Platform:      win32
+[debug] [2019-11-26T12:50:09.350Z] Node Version:  v10.16.3
+[debug] [2019-11-26T12:50:09.351Z] Time:          Tue Nov 26 2019 15:50:09 GMT+0300 (GMT+03:00)
+[debug] [2019-11-26T12:50:09.351Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-11-26T12:50:09.360Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-26T12:50:09.361Z] > authorizing via signed-in user
+[debug] [2019-11-26T12:50:09.361Z] [iam] checking project lab-project-aa6c1 for permissions ["firebase.projects.get"]
+[debug] [2019-11-26T12:50:09.362Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lab-project-aa6c1:testIamPermissions  
+
+[debug] [2019-11-26T12:50:10.652Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-26T12:50:10.657Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-project-aa6c1  
+ 
+[debug] [2019-11-26T12:50:11.145Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'D:\nosql2h19-shop'...
+[info] 
+[debug] [2019-11-26T12:50:11.159Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-project-aa6c1/webApps/-/config  
+ 
+[warn] !  Your requested "node" version "8" doesn't match your global version "10"
+[info] +  functions: Emulator started at http://localhost:5001
+[debug] [2019-11-26T12:50:12.024Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "D:\nosql2h19-shop\functions" for Cloud Functions...
+[info] i  hosting: Serving hosting files from: build
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2019-11-26T12:50:12.594Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
+[debug] [2019-11-26T12:50:12.595Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-11-26T12:50:12.598Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-11-26T12:50:12.600Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-11-26T12:50:12.601Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[info] +  functions[app]: http function initialized (http://localhost:5001/lab-project-aa6c1/us-central1/app).
+[info] i  functions[onAccountCreate]: function ignored because the firestore emulator does not exist or is not running.
+[info] i  functions[onTransactionCreate]: function ignored because the firestore emulator does not exist or is not running.
