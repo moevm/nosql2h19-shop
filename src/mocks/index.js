@@ -97,7 +97,7 @@ export const getUserTransactions = () => {
               "_seconds": 1573938000,
               "_nanoseconds": 0
             },
-            "accountId ": "2532",
+            "accountId": "2532",
             "amount": 200,
             "id": "352678"
           },

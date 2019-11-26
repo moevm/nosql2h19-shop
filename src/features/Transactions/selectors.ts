@@ -10,3 +10,10 @@ export const transactionsSelector = createSelector(
     return transactions.data;
   }
 );
+
+export const transactionsIsRequesting = createSelector(
+    transactionsGetter,
+    (transactions: TransactionsState) => {
+        return transactions.isRequesting;
+    }
+);

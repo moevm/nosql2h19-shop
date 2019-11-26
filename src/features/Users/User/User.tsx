@@ -12,6 +12,21 @@ import {
 import { ArrowBack } from "@material-ui/icons";
 import styled from "styled-components";
 import { RouteComponentProps } from "react-router";
+import { ListContainerStateToProps } from "./Container";
+import MainTable, {
+  MainTableColumns
+} from "../../../components/Tabels/MainTable";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: "100%",
+      flexGrow: 1,
+      overflowX: "auto",
+      marginTop: "20px"
+    }
+  })
+);
 
 const Header = styled.div`
   display: grid;
@@ -29,23 +44,48 @@ const Info = styled.div`
   font-size: 14px;
 `;
 
-export interface UserPropsInterface {
+const columns: Array<MainTableColumns> = [
+  {
+    name: "id",
+    title: "Номер транзакции"
+  },
+  {
+    name: "category",
+    title: "Категория"
+  },
+  {
+    name: "date",
+    title: "Дата"
+  },
+  {
+    name: "amount",
+    title: "Сумма"
+  },
+  {
+    name: "accountId",
+    title: "№ счета"
+  }
+];
+
+export interface UserPropsInterface extends ListContainerStateToProps {
   id: string;
   getUser: () => void;
   getUserTransactions: () => void;
-  user: UsersDataState;
 }
 
 const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
   user,
   getUser,
   getUserTransactions,
+  transactions,
+  isRequestingTransactions,
   history
 }) => {
   useEffect(() => {
     getUser();
     getUserTransactions();
   }, []);
+  const classes = useStyles();
   return (
     <>
       <Header>
@@ -63,6 +103,20 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
         <div>Сумма трат:</div>
         <div>{user.spendings}</div>
       </Info>
+      <Paper className={classes.root} elevation={0}>
+        <MainTable
+          data={transactions.map(transaction => ({
+            ...transaction,
+            date: new Date(transaction.created._seconds).toLocaleString("ru", {
+              year: 'numeric',
+              month: 'numeric',
+              day: 'numeric',
+            })
+          }))}
+          columns={columns}
+          isRequesting={isRequestingTransactions}
+        />
+      </Paper>
     </>
   );
 };
