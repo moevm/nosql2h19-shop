@@ -11,7 +11,6 @@ const firestore = admin.firestore();
 router.post('/:collection', async (req, res) => {
   try {
     const collection = req.params.collection;
-    console.log(collection)
     if(collection !== 'users' && collection !== 'accounts' && collection !== 'transactions'){
       res.json({status: 'error', error: 'Incorrect collection name'});
     }
@@ -24,7 +23,6 @@ router.post('/:collection', async (req, res) => {
 
     if(collection === 'users'){
       for (const item of result){
-        console.log()
         await firestore.collection(collection)
            .add({...item, accounts:[], spendings: 0, age: parseInt(item.age)})
       }
@@ -32,7 +30,6 @@ router.post('/:collection', async (req, res) => {
 
     if(collection === 'accounts'){
       for (const item of result){
-        console.log(generateNumberId())
         await firestore.collection(collection)
            .doc(generateNumberId().toString())
            .set({...item, transactions: [], money: parseInt(item.money)})
@@ -40,8 +37,6 @@ router.post('/:collection', async (req, res) => {
     }
     if(collection === 'transactions'){
       for (const item of result){
-        console.log(generateNumberId(6))
-
         const accountSnapshot = await firestore.collection('accounts')
            .doc(item.accountId)
            .get()

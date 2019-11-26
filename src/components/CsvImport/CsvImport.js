@@ -10,7 +10,7 @@ class CsvInput extends React.Component {
 
     ///import/accounts
     ///import/transactions
-    await fetch('/import/users', {
+    await fetch('/api/import/users', {
       method: 'POST',
       headers: {
         "Content-Type": "text/csv"
