@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import fetchAPI from "./commons/api";
 
 import {getUsers, getUser, getUserStatAllTime, getUserStatAllPeriod, getUserTransactions} from "./mocks";
+import CsvInput from "./components/CsvImport/CsvImport";
 
 const App: React.FC = () => {
     getUsers().then(res => console.log(res))
@@ -56,6 +57,7 @@ const App: React.FC = () => {
   return (
       <Provider store={store}>
         <Layout />
+        <CsvInput />
       </Provider>
   );
 }

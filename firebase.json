@@ -30,8 +30,13 @@
       {
         "source": "/all-time",
         "function": "app"
-      },      {
+      },
+      {
         "source": "/period",
+        "function": "app"
+      },
+      {
+        "source": "/upload/**",
         "function": "app"
       }
     ]
