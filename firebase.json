@@ -36,7 +36,7 @@
         "function": "app"
       },
       {
-        "source": "/upload/**",
+        "source": "/import/**",
         "function": "app"
       }
     ]

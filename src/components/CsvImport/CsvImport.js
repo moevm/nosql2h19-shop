@@ -8,7 +8,9 @@ class CsvInput extends React.Component {
   handleClick = async (event) => {
     event.preventDefault();
 
-    await fetch('/upload/users', {
+    ///import/accounts
+    ///import/transactions
+    await fetch('/import/users', {
       method: 'POST',
       headers: {
         "Content-Type": "text/csv"
