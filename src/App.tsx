@@ -4,8 +4,11 @@ import store from "./store";
 import { Provider } from "react-redux";
 import CsvInput from "./components/CsvImport/CsvImport";
 
-const App: React.FC = () => {
+import {getUsers} from "./features/Users/api";
 
+const App: React.FC = () => {
+    getUsers().then(res => res.json())
+        .then(console.log)
   return (
       <Provider store={store}>
         <Layout />
