@@ -3,10 +3,11 @@ import * as usersActions from './actions'
 import { put, takeLatest } from "@redux-saga/core/effects";
 import * as API from './api';
 import * as mocks from "../../mocks";
+import {fetchReqAsync} from "../../commons/api";
 
 export function* getUsers() {
     try {
-        const { users } = yield API.getUsers();
+        const { users } = yield fetchReqAsync(API.getUsers) ;
         yield put(usersActions.getUsersSuccess(users));
     } catch (error) {
         console.log(error);

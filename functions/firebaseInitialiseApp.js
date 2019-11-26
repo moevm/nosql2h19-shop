@@ -1,5 +1,7 @@
 const admin = require('firebase-admin');
 
+process.env.GOOGLE_APPLICATION_CREDENTIALS = './key.json';
+
 const adminInitializer = {
   initialize() {
     if (this.admin) {
