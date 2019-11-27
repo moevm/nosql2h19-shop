@@ -9,17 +9,17 @@ const firestore = admin.firestore();
 
 router.post('/', async (req, res) => {
   try {
-    const {id, startDate, endDate } = req.body
+    const { startDate, endDate } = req.body
 
     if(!startDate && !endDate){
       return res.json({status: 'error', error: 'startDate and endADate cannot be undefined both'});
     }
 
-    const userSnapshot = await firestore.collection('users')
-       .doc(id)
+    const userSnapshots = await firestore.collection('users')
        .get()
 
-    const {accounts} = userSnapshot.data()
+    const accounts = userSnapshots.docs.reduce((accounts, doc) => [...accounts, ...doc.data().accounts], [])
+
 
     const userTransactions = await accounts
        .reduce(async (acc, accountId) => {
