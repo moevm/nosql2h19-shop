@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
          return Promise.resolve([...accountTransactionSnapshots, ...transactionsData])
        }, Promise.resolve([]))
 
-    const categories = userTransactions.reduce((categoryAmounts, transaction) => {
+    let categories = userTransactions.reduce((categoryAmounts, transaction) => {
       const {category, amount: transactionAmount, created} = transaction
       const createdMS = created.seconds * 1000
 
@@ -60,6 +60,10 @@ router.post('/', async (req, res) => {
 
       return categoryAmounts
     }, {})
+
+    categories = Object
+       .entries(categories)
+       .map(categoryItem => ({category: categoryItem[0], amount: categoryItem[1]}))
 
     return res.json({categories});
   }

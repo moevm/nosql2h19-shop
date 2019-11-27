@@ -15,6 +15,8 @@ router.use('/transactions', require('./transactions'))
 router.use('/transaction', require('./transaction'))
 router.use('/stat/all-time', require('./stat_all-time'))
 router.use('/stat/period', require('./stat_period'))
+router.use('/all-users/stat/all-time', require('./all-users_stat_all-time'))
+router.use('/all-users/stat/period', require('./all-users_stat_period'))
 
 router.use('/import', require('./import'))
 
