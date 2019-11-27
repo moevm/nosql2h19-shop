@@ -82,13 +82,21 @@ const UserStat: React.FC<UserStatPropsInterface & RouteComponentProps<any>> = ({
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
+    switch (newValue) {
+      case 0:
+        getStatisticUserAll(id);
+        break;
+      case 1:
+        handleGetStatPeriod();
+        break;
+    }
   };
 
   const handleGetStatPeriod = () => {
     getStatisticUserPeriod(
       id,
-      isStartDate && startDate!.getTime()*1000,
-      isEndDate && endDate!.getTime()*1000
+      isStartDate && startDate!.getTime(),
+      isEndDate && endDate!.getTime()
     );
     handleIsGetStatisticUserPeriod(true);
   };
