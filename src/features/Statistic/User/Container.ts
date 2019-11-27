@@ -23,7 +23,8 @@ const mapStateToProps = (
 });
 
 const mapDefaultProps = {
-  getStatisticUserAll: statisticActions.getStatisticUserAll
+  getStatisticUserAll: statisticActions.getStatisticUserAll,
+  getStatisticUserPeriod: statisticActions.getStatisticUserPeriod
 };
 
 export default connect(

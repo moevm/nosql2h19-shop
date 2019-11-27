@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  width: 400px;
+`
 
 class Statistic extends Component {
   constructor(props) {
@@ -16,9 +21,9 @@ class Statistic extends Component {
   render() {
     const { options, series } = this.state;
     return (
-      <div className="donut">
+      <Wrapper>
         <Chart options={options} series={series} type="pie" />
-      </div>
+      </Wrapper>
     );
   }
 }
