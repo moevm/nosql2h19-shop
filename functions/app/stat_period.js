@@ -7,28 +7,35 @@ const admin = adminInitializer.initialize();
 const firestore = admin.firestore();
 
 
-router.post('/', (req, res) => {
-  firestore.collection('transactions')
-     .where('userId', '==', req.body.id)
+router.post('/', async (req, res) => {
+  const userSnapshot = await firestore.collection('users')
+     .doc(req.body.id)
      .get()
-     .then(snapshot => {
-       console.log( req.body.startDate, req.body.endDate)
-       let categories = {}
-       snapshot.forEach(doc => {
-         const category = doc.data().category
-         const created = doc.data().created.seconds * 1000
-         console.log(created)
-         if (created >= req.body.startDate && created <= req.body.endDate){
-           categories[category] = categories[category] ? categories[category] : 0;
-           categories[category] += 1
-         }
-       })
-       return Object
-          .entries(categories)
-          .map(categoryItem => ({category: categoryItem[0], quantity: categoryItem[1]}))
-     }).then(categories => {
-    res.json({categories});
-  })
-});
+
+  const {accounts} = userSnapshot.data()
+  let categories = {}
+
+  for (const accountId of accounts) {
+    const transactionsSnapshot = await firestore.collection('transactions')
+       .where('accountId', '==', accountId)
+       .get()
+
+    transactionsSnapshot.forEach(doc => {
+      const {category, amount, created} = doc.data()
+      const createdMS = created.seconds * 1000
+
+      if (createdMS >= req.body.startDate && createdMS <= req.body.endDate) {
+        categories[category] = categories[category] ? categories[category] : 0;
+        categories[category] += amount
+      }
+    })
+  }
+
+  categories = Object
+     .entries(categories)
+     .map(categoryItem => ({category: categoryItem[0], amount: categoryItem[1]}))
+
+  res.json({categories});
+})
 
 module.exports = router

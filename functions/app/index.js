@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 router.use('/users', require('./users'))
 router.use('/user', require('./user'))
 router.use('/transactions', require('./transactions'))
+router.use('/transaction', require('./transaction'))
 router.use('/stat/all-time', require('./stat_all-time'))
 router.use('/stat/period', require('./stat_period'))
 
