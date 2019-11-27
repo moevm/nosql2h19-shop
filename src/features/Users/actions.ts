@@ -33,3 +33,17 @@ export const getUserFail = (error: object) => ({
     type: usersTypes.USER_GET_FAIL,
     error
 });
+
+export const importUsers = (file: File) => ({
+    type: usersTypes.USERS_IMPORT,
+    payload: { file }
+});
+
+export const importUsersSuccess = () => ({
+    type: usersTypes.USERS_IMPORT_SUCCESS
+});
+
+export const importUsersFail = (error: object) => ({
+    type: usersTypes.USERS_IMPORT_FAIL,
+    error
+});

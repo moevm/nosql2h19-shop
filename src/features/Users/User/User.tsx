@@ -16,6 +16,8 @@ import MainTable, {
   MainTableColumns
 } from "../../../components/Tabels/MainTable";
 import routes from "../../../constants/routes";
+import CsvImport from "../../../components/Import/CsvImport";
+import CircularLoader from "../../../components/Loader/CircularLoader";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,6 +44,13 @@ const Info = styled.div`
   align-items: center;
   grid-gap: 14px;
   font-size: 14px;
+`;
+
+const ButtonGroupImport = styled.div`
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 `;
 
 const columns: Array<MainTableColumns> = [
@@ -71,6 +80,7 @@ export interface UserPropsInterface extends ListContainerStateToProps {
   id: string;
   getUser: (id: string) => void;
   getUserTransactions: (id: string) => void;
+  importTransactions: (file: File, id: string) => void;
 }
 
 const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
@@ -80,44 +90,61 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
   getUserTransactions,
   transactions,
   isRequestingTransactions,
-  history
+  isRequesting,
+  history,
+  importTransactions
 }) => {
   useEffect(() => {
     getUser(id);
     getUserTransactions(id);
   }, []);
   const classes = useStyles();
+  console.log(user);
   return (
     <>
-      <Header>
-        <IconButton onClick={() => history.goBack()}>
-          <ArrowBack />
-        </IconButton>
-        <Typography variant="h5">{user.name}</Typography>
-        <Button
-          variant="contained"
-          onClick={() => history.push(`${routes.PATH_STATISTIC}/${id}`)}
-        >
-          Статистика
-        </Button>
-      </Header>
-      <Info>
-        <div>Возраст:</div>
-        <div>{user.age}</div>
-        <div>Пол:</div>
-        <div>{user.sex}</div>
-        <div>Сумма трат:</div>
-        <div>{user.spendings}</div>
-      </Info>
+      {isRequesting ? (
+        <CircularLoader />
+      ) : (
+        <>
+          <Header>
+            <IconButton onClick={() => history.goBack()}>
+              <ArrowBack />
+            </IconButton>
+            <Typography variant="h5">{user.name}</Typography>
+            <Button
+              variant="contained"
+              onClick={() => history.push(`${routes.PATH_STATISTIC}/${id}`)}
+            >
+              Статистика
+            </Button>
+          </Header>
+          <Info>
+            <div>Возраст:</div>
+            <div>{user.age}</div>
+            <div>Пол:</div>
+            <div>{user.sex}</div>
+            <div>Сумма трат:</div>
+            <div>{user.spendings}</div>
+            <div>Номера счетов:</div>
+            <div>{user.accounts.join()}</div>
+          </Info>
+        </>
+      )}
+      <ButtonGroupImport>
+        <CsvImport onClick={file => importTransactions(file, id)} />
+      </ButtonGroupImport>
       <Paper className={classes.root} elevation={0}>
         <MainTable
           data={transactions.map(transaction => ({
             ...transaction,
-            date: new Date(transaction.created._seconds*1000).toLocaleString("ru", {
-              year: "numeric",
-              month: "numeric",
-              day: "numeric"
-            })
+            date: new Date(transaction.created._seconds * 1000).toLocaleString(
+              "ru",
+              {
+                year: "numeric",
+                month: "numeric",
+                day: "numeric"
+              }
+            )
           }))}
           columns={columns}
           isRequesting={isRequestingTransactions}

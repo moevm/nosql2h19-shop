@@ -30,13 +30,16 @@ export const userById = createSelector(
   usersGetter,
   userPropsGetter,
   (users: UsersState, props: UserPropsGetterInterface) => {
-    return (
+      console.log(users.data);
+      console.log(users.data.find(user => user.id === props.id));
+      return (
       users.data.find(user => user.id === props.id) || {
         name: "",
         id: "",
         age: 0,
         sex: Gender.MALE,
-        spendings: 0
+        spendings: 0,
+          accounts: []
       }
     );
   }

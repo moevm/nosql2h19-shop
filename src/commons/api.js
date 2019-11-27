@@ -69,7 +69,7 @@ function postFileFetch(url, data) {
         headers: {
             Accept: "application/json"
         },
-        body: bodyData
+        body: data
     });
 }
 

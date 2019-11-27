@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { Button, Paper, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import MainTable, {
   MainTableColumns
 } from "../../../components/Tabels/MainTable";
 import { ListContainerStateToProps } from "./Container";
-import {UsersDataState} from "../reducer";
+import { UsersDataState } from "../reducer";
 import routes from "../../../constants/routes";
+import CsvImport from "../../../components/Import/CsvImport";
+import styled from "styled-components";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,6 +21,11 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 const columns: Array<MainTableColumns> = [
   {
@@ -34,19 +41,21 @@ const columns: Array<MainTableColumns> = [
     title: "Пол"
   },
   {
-    name: 'spendings',
-    title: 'Сумма трат'
+    name: "spendings",
+    title: "Сумма трат"
   }
 ];
 
 interface ListProps extends ListContainerStateToProps {
   getUsers: () => void;
+  importUsers: () => void;
 }
 
 const List: React.FC<ListProps & RouteComponentProps<any>> = ({
   getUsers,
   users,
   isRequesting,
+  importUsers,
   history
 }) => {
   const classes = useStyles();
@@ -55,13 +64,18 @@ const List: React.FC<ListProps & RouteComponentProps<any>> = ({
   }, []);
   return (
     <>
-      <Typography variant="h5">Пользователи</Typography>
+      <Header>
+        <Typography variant="h5">Пользователи</Typography>
+        <CsvImport onClick={importUsers} />
+      </Header>
       <Paper className={classes.root} elevation={0}>
         <MainTable
           data={users}
           columns={columns}
           isRequesting={isRequesting}
-          onClick={(item: UsersDataState) => history.push(`${routes.PATH_USERS}/${item.id}`)}
+          onClick={(item: UsersDataState) =>
+            history.push(`${routes.PATH_USERS}/${item.id}`)
+          }
         />
       </Paper>
     </>

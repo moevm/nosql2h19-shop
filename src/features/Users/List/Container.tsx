@@ -16,7 +16,8 @@ const mapStateToProps = (state: State): ListContainerStateToProps => ({
 })
 
 const mapDefaultProps = {
-    getUsers: usersActions.getUsers
+    getUsers: usersActions.getUsers,
+    importUsers: usersActions.importUsers
 }
 
 export default connect(mapStateToProps, mapDefaultProps)(List)

@@ -1,36 +1,39 @@
 import * as usersTypes from "./actionTypes";
 
 export enum Gender {
-  MALE = 'male',
-  FEMALE = 'female'
+  MALE = "male",
+  FEMALE = "female"
 }
 
 export interface UsersDataState {
-  id: string,
-  name: string,
-  sex: Gender,
-  age: number,
-  spendings: number
+  id: string;
+  name: string;
+  sex: Gender;
+  age: number;
+  spendings: number;
+  accounts: Array<number>;
 }
 
 export interface UsersState {
-  data: Array<UsersDataState>,
-  isRequesting: boolean
+  data: Array<UsersDataState>;
+  isRequesting: boolean;
+  isRequestingImport: boolean;
 }
 
 interface UsersPayload {
-  data?: object,
+  data?: UsersDataState;
 }
 
 interface UsersAction {
-  type: string,
-  payload?: UsersPayload,
-  error?: object
+  type: string;
+  payload?: UsersPayload;
+  error?: object;
 }
 
 const initialState: UsersState = {
   data: [],
-  isRequesting: false
+  isRequesting: false,
+  isRequestingImport: false
 };
 
 export default (state: UsersState = initialState, action: UsersAction) => {
@@ -52,7 +55,10 @@ export default (state: UsersState = initialState, action: UsersAction) => {
       return {
         ...state,
         isRequesting: false,
-        data: [...state.data, payload.data]
+        data: [
+          ...state.data.filter(({ id }) => id !== payload.data!.id),
+          payload.data
+        ]
       };
     case usersTypes.USER_GET_FAIL:
     case usersTypes.USERS_GET_FAIL:
@@ -60,6 +66,17 @@ export default (state: UsersState = initialState, action: UsersAction) => {
         ...state,
         isRequesting: false,
         error: error
+      };
+    case usersTypes.USERS_IMPORT:
+      return {
+        ...state,
+        isRequestingImport: true
+      };
+    case usersTypes.USERS_IMPORT_FAIL:
+    case usersTypes.USERS_IMPORT_SUCCESS:
+      return {
+        ...state,
+        isRequestingImport: false
       };
     default:
       return state;

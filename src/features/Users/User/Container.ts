@@ -3,7 +3,7 @@ import { State } from "../../../reducer";
 import User from "./User";
 import * as usersActions  from "../actions";
 import * as transactionActions  from "../../Transactions/actions";
-import { userById, UserPropsGetterInterface } from "../selectors";
+import {userById, UserPropsGetterInterface, usersIsRequesting} from "../selectors";
 import {UsersDataState} from "../reducer";
 import {transactionsIsRequesting, transactionsSelector} from "../../Transactions/selectors";
 import {TransactionDataState} from "../../Transactions/reducer";
@@ -11,18 +11,21 @@ import {TransactionDataState} from "../../Transactions/reducer";
 export interface ListContainerStateToProps {
     user: UsersDataState,
     transactions: Array<TransactionDataState>,
-    isRequestingTransactions: boolean
+    isRequestingTransactions: boolean,
+    isRequesting: boolean
 }
 
 const mapStateToProps = (state: State, ownProps: UserPropsGetterInterface): ListContainerStateToProps => ({
     user: userById(state, ownProps),
     transactions: transactionsSelector(state),
+    isRequesting: usersIsRequesting(state),
     isRequestingTransactions: transactionsIsRequesting(state)
 })
 
 const mapDefaultProps = {
     getUser: usersActions.getUser,
-    getUserTransactions: transactionActions.getTransactionsUserAll
+    getUserTransactions: transactionActions.getTransactionsUserAll,
+    importTransactions: transactionActions.importTransactions
 }
 
 export default connect(mapStateToProps, mapDefaultProps)(User)

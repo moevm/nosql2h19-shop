@@ -1,4 +1,5 @@
 import * as transactionTypes from "./actionTypes";
+import * as usersTypes from "../Users/actionTypes";
 
 export interface TransactionDataState {
   category: string,
@@ -14,7 +15,8 @@ export interface TransactionDataState {
 
 export interface TransactionsState {
   data: Array<TransactionDataState>,
-  isRequesting: boolean
+  isRequesting: boolean,
+  isRequestingImport: boolean
 }
 
 interface TransactionsPayload {
@@ -29,7 +31,8 @@ interface TransactionsAction {
 
 const initialState: TransactionsState = {
   data: [],
-  isRequesting: false
+  isRequesting: false,
+  isRequestingImport: false
 };
 
 export default (state: TransactionsState = initialState, action: TransactionsAction) => {
@@ -52,6 +55,17 @@ export default (state: TransactionsState = initialState, action: TransactionsAct
         isRequesting: false,
         error: error
       };
+    case transactionTypes.TRANSACTIONS_IMPORT:
+      return {
+        ...state,
+        isRequestingImport: true
+      }
+    case transactionTypes.TRANSACTIONS_IMPORT_SUCCESS:
+    case transactionTypes.TRANSACTIONS_IMPORT_FAIL:
+      return {
+        ...state,
+        isRequestingImport: false
+      }
     default:
       return state;
   }
