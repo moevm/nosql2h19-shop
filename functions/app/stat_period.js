@@ -8,34 +8,64 @@ const firestore = admin.firestore();
 
 
 router.post('/', async (req, res) => {
-  const userSnapshot = await firestore.collection('users')
-     .doc(req.body.id)
-     .get()
+  try {
+    const {id, startDate, endDate } = req.body
 
-  const {accounts} = userSnapshot.data()
-  let categories = {}
+    if(!startDate && !endDate){
+      return res.json({status: 'error', error: 'startDate and endADate cannot be undefined both'});
+    }
 
-  for (const accountId of accounts) {
-    const transactionsSnapshot = await firestore.collection('transactions')
-       .where('accountId', '==', accountId)
+    const userSnapshot = await firestore.collection('users')
+       .doc(id)
        .get()
 
-    transactionsSnapshot.forEach(doc => {
-      const {category, amount, created} = doc.data()
+    const {accounts} = userSnapshot.data()
+
+    const userTransactions = await accounts
+       .reduce(async (acc, accountId) => {
+         const accountTransactionSnapshots = await acc
+
+         const transactionSnapshots = await firestore.collection('transactions')
+            .where('accountId', '==', accountId)
+            .get()
+
+         const transactionsData = transactionSnapshots.docs
+            .map(transactionSnapshot => ({ ...transactionSnapshot.data(), id: transactionSnapshot.id}))
+
+         return Promise.resolve([...accountTransactionSnapshots, ...transactionsData])
+       }, Promise.resolve([]))
+
+    const categories = userTransactions.reduce((categoryAmounts, transaction) => {
+      const {category, amount: transactionAmount, created} = transaction
       const createdMS = created.seconds * 1000
 
-      if (createdMS >= req.body.startDate && createdMS <= req.body.endDate) {
-        categories[category] = categories[category] ? categories[category] : 0;
-        categories[category] += amount
+      const afterDate = startDate && createdMS >= startDate
+      const beforeDate = endDate && createdMS <= endDate
+
+      if (afterDate && beforeDate) {
+        let categoryAmount = categoryAmounts[category] ? categoryAmounts[category] : 0;
+
+        categoryAmount += transactionAmount
+
+        return {...categoryAmounts, [category]: categoryAmount}
       }
-    })
+
+      if(!(endDate && startDate) && (afterDate || beforeDate)){
+        let categoryAmount = categoryAmounts[category] ? categoryAmounts[category] : 0;
+
+        categoryAmount += transactionAmount
+
+        return {...categoryAmounts, [category]: categoryAmount}
+      }
+
+      return categoryAmounts
+    }, {})
+
+    return res.json({categories});
   }
-
-  categories = Object
-     .entries(categories)
-     .map(categoryItem => ({category: categoryItem[0], amount: categoryItem[1]}))
-
-  res.json({categories});
+  catch (error) {
+    return res.json({status: 'error', error});
+  }
 })
 
 module.exports = router
