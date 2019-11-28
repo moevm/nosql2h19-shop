@@ -8,15 +8,31 @@ module.exports = functions.firestore.document('/transactions/{transactionId}')
    .onCreate(async (snapshot, context) => {
      try {
        const {accountId} = snapshot.data()
+       console.log(accountId)
+       const accountRef =  await firestore.collection('accounts').doc(accountId)
 
-       const accountSnapshot = await firestore.collection('accounts')
-          .doc(accountId)
-          .get()
+       await firestore.runTransaction(DBTransaction => {
+         return DBTransaction.get(accountRef)
+            .then(doc => {
+              const { transactions } = doc.data()
+              console.log(transactions, snapshot.id)
+              const updatedTransactions = [...transactions, snapshot.id]
 
-       const { transactions } = accountSnapshot.data()
-       const updatedTransactions = [...transactions, snapshot.id]
+              DBTransaction.update(accountRef, {transactions: updatedTransactions});
 
-       await accountSnapshot.ref.set({transactions: updatedTransactions}, {merge: true})
+              return updatedTransactions;
+            });
+       })
+
+       // const accountSnapshot = await firestore.collection('accounts')
+       //    .doc(accountId)
+       //    .get()
+       //
+       // const { transactions } = accountSnapshot.data()
+       // const updatedTransactions = [...transactions, snapshot.id]
+       //
+       // //TODO переделать ФБ транзакцией
+       // await accountSnapshot.ref.set({transactions: updatedTransactions}, {merge: true})
 
 
        const userId = snapshot.data().userId
@@ -28,7 +44,7 @@ module.exports = functions.firestore.document('/transactions/{transactionId}')
               const { spendings } = doc.data()
               const { amount } = snapshot.data()
               const newSpendings = spendings + amount
-
+              console.log(spendings, amount)
               transaction.update(userRef, {spendings: newSpendings});
 
               return newSpendings;

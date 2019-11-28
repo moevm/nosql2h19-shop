@@ -17,24 +17,40 @@ router.post('/:collection', async (req, res) => {
 
     const result = await csv().fromString(req.body.toString());
 
+    console.log(result)
     if (JSON.stringify(result) === '[]'){
       res.json({status: 'error', error: 'Input file is empty'});
     }
 
     if(collection === 'users'){
       for (const item of result){
-        await firestore.collection(collection)
-           .add({...item, accounts:[], spendings: 0, age: parseInt(item.age)})
+        const {name, sex} = item
+        const accounts = JSON.parse(item.accounts).map(acc => `${acc}`)
+        const age = parseInt(item.age)
+        console.log(accounts)
+        const userRef = await firestore.collection(collection)
+           .add({
+             name,
+             sex,
+             accounts,
+             spendings: 0,
+             age
+           })
+
+        const userId = userRef.id
+
+        for (const accId of accounts){
+          await firestore.collection('accounts')
+             .doc(accId.toString())
+             .set({
+               money: 50000,
+               transactions: [],
+               userId
+             })
+        }
       }
     }
 
-    if(collection === 'accounts'){
-      for (const item of result){
-        await firestore.collection(collection)
-           .doc(generateNumberId().toString())
-           .set({...item, transactions: [], money: parseInt(item.money)})
-      }
-    }
     if(collection === 'transactions'){
       for (const item of result){
         const accountSnapshot = await firestore.collection('accounts')
