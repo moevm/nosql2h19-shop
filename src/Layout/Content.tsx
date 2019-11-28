@@ -3,7 +3,7 @@ import { UsersList, User } from '../features/Users'
 import styled from "styled-components";
 import { Route, Switch } from 'react-router-dom'
 import { routesConst } from '../constants';
-import { UserStat } from "../features/Statistic";
+import {Statistic, UserStat} from "../features/Statistic";
 
 const Wrapper: React.FC = styled.div<ContentProps>`
     margin: 30px 25px 0 100px;
@@ -17,6 +17,7 @@ const Content: React.FC<ContentProps> = () => {
         <Wrapper>
             <Switch>
                 <Route path={routesConst.PATH_USERS} component={UsersList} exact/>
+                <Route path={routesConst.PATH_STATISTIC} component={Statistic} exact/>
                 <Route path={`${routesConst.PATH_USERS}/:id`} exact
                        render={(props) => (
                            <User id={props.match.params.id} {...props} />

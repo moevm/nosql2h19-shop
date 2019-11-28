@@ -8,3 +8,11 @@ export const getStatUserAll = data => {
 export const getStatUserPeriod = data => {
   return fetchAPI.post(`/api/stat/period`, data);
 };
+
+export const getStatAll = () => {
+  return fetchAPI.post(`/api/all-users/stat/all-time`);
+};
+
+export const getStatPeriod = data => {
+  return fetchAPI.post(`/api/all-users/stat/period`, data);
+};

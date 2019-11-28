@@ -28,12 +28,16 @@ const initialState: StatisticState = {
 export default (state: StatisticState = initialState, action: StatisticAction) => {
   const { type, payload = {}, error } = action;
   switch (type) {
+    case statisticTypes.STATISTIC_PERIOD_GET:
+    case statisticTypes.STATISTIC_ALL_GET:
     case statisticTypes.STATISTIC_USER_PERIOD_GET:
     case statisticTypes.STATISTIC_USER_ALL_GET:
       return {
         ...state,
         isRequesting: true
       };
+    case statisticTypes.STATISTIC_PERIOD_GET_SUCCESS:
+    case statisticTypes.STATISTIC_ALL_GET_SUCCESS:
     case statisticTypes.STATISTIC_USER_PERIOD_GET_SUCCESS:
     case statisticTypes.STATISTIC_USER_ALL_GET_SUCCESS:
       return {
@@ -41,6 +45,8 @@ export default (state: StatisticState = initialState, action: StatisticAction) =
         isRequesting: false,
         data: payload.data
       };
+    case statisticTypes.STATISTIC_PERIOD_GET_FAIL:
+    case statisticTypes.STATISTIC_ALL_GET_FAIL:
     case statisticTypes.STATISTIC_USER_PERIOD_GET_FAIL:
     case statisticTypes.STATISTIC_USER_ALL_GET_FAIL:
       return {
