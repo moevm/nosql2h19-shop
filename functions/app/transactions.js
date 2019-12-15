@@ -8,17 +8,40 @@ const firestore = admin.firestore();
 
 
 router.post('/', async (req, res) => {
+  const {id, startDate, endDate, categories} = req.body
+
   const userSnapshot = await firestore.collection('users')
-     .doc(req.body.id)
+     .doc(id)
      .get()
 
   const { accounts } = userSnapshot.data()
   let items = [];
 
   for (const accountId of accounts){
-    const transactionsSnapshot = await firestore.collection('transactions')
+    let userTransactionsRef = firestore.collection('transactions')
        .where('accountId', '==', accountId)
-       .get()
+
+    if(startDate){
+      const date = new Date(startDate)
+
+      userTransactionsRef = userTransactionsRef
+         .where('created', '>=', date)
+    }
+
+    if(endDate){
+      const date = new Date(endDate)
+
+      userTransactionsRef = userTransactionsRef
+         .where('created', '<=', date)
+    }
+
+    if(categories){
+      console.log('category')
+      userTransactionsRef = userTransactionsRef
+         .where('category', 'in', categories)
+    }
+
+    const transactionsSnapshot = await userTransactionsRef.get()
 
     transactionsSnapshot.docs.forEach(doc => {
      items.push({...doc.data(), id: doc.id});
