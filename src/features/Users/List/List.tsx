@@ -7,7 +7,7 @@ import MainTable, {
 } from "../../../components/Tabels/MainTable";
 import { ListContainerStateToProps } from "./Container";
 import { UsersDataState } from "../reducer";
-import routes from "../../../constants/routes";
+import * as routes from "../../../constants/routes";
 import CsvImport from "../../../components/Import/CsvImport";
 import styled from "styled-components";
 

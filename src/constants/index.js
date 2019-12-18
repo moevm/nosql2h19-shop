@@ -1,3 +1,3 @@
-import routesConst from './routes'
+import * as routesConst from './routes'
 
 export { routesConst }

@@ -27,6 +27,23 @@ export const getTransactionsUserAllFail = (error: object) => ({
   error
 });
 
+export const getTransaction = (id: string) => ({
+  type: transactionTypes.TRANSACTION_GET,
+  payload: { id }
+});
+
+export const getTransactionSuccess = (data: TransactionDataState) => ({
+  type: transactionTypes.TRANSACTION_GET_SUCCESS,
+  payload: {
+    data
+  }
+});
+
+export const getTransactionFail = (error: object) => ({
+  type: transactionTypes.TRANSACTION_GET_FAIL,
+  error
+});
+
 export const importTransactions = (file: File, id: string) => ({
   type: transactionTypes.TRANSACTIONS_IMPORT,
   payload: {

@@ -38,10 +38,18 @@ const initialState: TransactionsState = {
 export default (state: TransactionsState = initialState, action: TransactionsAction) => {
   const { type, payload = {}, error } = action;
   switch (type) {
+    case transactionTypes.TRANSACTION_GET:
     case transactionTypes.TRANSACTIONS_USER_ALL_GET:
       return {
         ...state,
         isRequesting: true
+      };
+    case transactionTypes.TRANSACTION_GET_SUCCESS:
+      console.log(1);
+      return {
+        ...state,
+        isRequesting: false,
+        data: [payload.data]
       };
     case transactionTypes.TRANSACTIONS_USER_ALL_GET_SUCCESS:
       return {
@@ -49,6 +57,7 @@ export default (state: TransactionsState = initialState, action: TransactionsAct
         isRequesting: false,
         data: payload.data
       };
+    case transactionTypes.TRANSACTION_GET_FAIL:
     case transactionTypes.TRANSACTIONS_USER_ALL_GET_FAIL:
       return {
         ...state,

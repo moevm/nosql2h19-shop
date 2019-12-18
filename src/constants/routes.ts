@@ -1,4 +1,3 @@
-const PATH_USERS: string = '/users';
-const PATH_STATISTIC: string = '/statistic';
-
-export default { PATH_USERS, PATH_STATISTIC }
+export const PATH_USERS: string = '/users';
+export const PATH_STATISTIC: string = '/statistic';
+export const PATH_TRANSACTIONS: string = '/transactions';

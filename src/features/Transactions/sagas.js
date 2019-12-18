@@ -20,6 +20,18 @@ export function* getTransactionsUserAll({ payload: { id, options } }) {
   }
 }
 
+export function* getTransaction({ payload: { id } }) {
+  try {
+    const { transaction } = yield fetchReqAsync(API.getUserTransaction, {
+      id
+    });
+    yield put(transactionActions.getTransactionSuccess(transaction));
+  } catch (error) {
+    console.log(error);
+    yield put(transactionActions.getTransactionFail(error));
+  }
+}
+
 export function* importTransactions({ payload: { file, id } }) {
   try {
     yield fetchResAsync(API.importTransactions, file);
@@ -34,6 +46,10 @@ function* watchTransactions() {
   yield takeLatest(
     transactionTypes.TRANSACTIONS_USER_ALL_GET,
     getTransactionsUserAll
+  );
+  yield takeLatest(
+      transactionTypes.TRANSACTION_GET,
+      getTransaction
   );
   yield takeLatest(transactionTypes.TRANSACTIONS_IMPORT, importTransactions);
 }

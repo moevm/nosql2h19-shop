@@ -15,9 +15,10 @@ import { ListContainerStateToProps } from "./Container";
 import MainTable, {
   MainTableColumns
 } from "../../../components/Tabels/MainTable";
-import routes from "../../../constants/routes";
+import * as routes from "../../../constants/routes";
 import CsvImport from "../../../components/Import/CsvImport";
 import CircularLoader from "../../../components/Loader/CircularLoader";
+import {TransactionDataState} from "../../Transactions/reducer";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -146,6 +147,9 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
               }
             )
           }))}
+          onClick={(item: TransactionDataState) =>
+              history.push(`${routes.PATH_TRANSACTIONS}/${item.id}`)
+          }
           columns={columns}
           isRequesting={isRequestingTransactions}
         />
