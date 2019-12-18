@@ -1,16 +1,18 @@
 import * as transactionTypes from "./actionTypes";
 import { TransactionDataState } from "./reducer";
+import {FilterInterface} from "../Users/User/FilterTransactions";
 
-interface GetTransactionsUserAllOptions {
+export interface GetTransactionsUserAllOptions {
   withUser?: boolean;
 }
 
 export const getTransactionsUserAll = (
   id: string,
-  options?: GetTransactionsUserAllOptions
+  options?: GetTransactionsUserAllOptions | null,
+  filter?: FilterInterface
 ) => ({
   type: transactionTypes.TRANSACTIONS_USER_ALL_GET,
-  payload: { id, options }
+  payload: { id, options, filter }
 });
 
 export const getTransactionsUserAllSuccess = (

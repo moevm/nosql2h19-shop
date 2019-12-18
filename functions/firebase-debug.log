@@ -116,3 +116,40 @@
 [debug] [2019-12-15T20:21:54.387Z] [runtime-status] Ephemeral server used! {}
 [debug] [2019-12-15T20:21:54.824Z] [runtime-status] Ephemeral server survived. {}
 [info] i  functions: Finished "app" in ~1s
+[debug] [2019-12-18T18:53:17.107Z] ----------------------------------------------------------------------
+[debug] [2019-12-18T18:53:17.110Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\79042\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-12-18T18:53:17.110Z] CLI Version:   7.4.0
+[debug] [2019-12-18T18:53:17.110Z] Platform:      win32
+[debug] [2019-12-18T18:53:17.110Z] Node Version:  v10.16.3
+[debug] [2019-12-18T18:53:17.115Z] Time:          Wed Dec 18 2019 21:53:17 GMT+0300 (GMT+03:00)
+[debug] [2019-12-18T18:53:17.115Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-12-18T18:53:17.138Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-18T18:53:17.139Z] > authorizing via signed-in user
+[debug] [2019-12-18T18:53:17.140Z] [iam] checking project lab-project-aa6c1 for permissions ["firebase.projects.get"]
+[debug] [2019-12-18T18:53:17.143Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-12-18T18:53:17.143Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-12-18T18:53:17.694Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-18T18:53:17.708Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lab-project-aa6c1:testIamPermissions  
+
+[debug] [2019-12-18T18:53:19.119Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-18T18:53:19.122Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-project-aa6c1  
+ 
+[debug] [2019-12-18T18:53:19.767Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'D:\nosql2h19-shop'...
+[info] 
+[debug] [2019-12-18T18:53:19.781Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lab-project-aa6c1/webApps/-/config  
+ 
+[warn] !  Your requested "node" version "8" doesn't match your global version "10"
+[info] +  functions: Emulator started at http://localhost:5001
+[debug] [2019-12-18T18:53:21.249Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "D:\nosql2h19-shop\functions" for Cloud Functions...
+[info] i  hosting: Serving hosting files from: build
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2019-12-18T18:53:21.799Z] [runtime-status] Functions runtime initialized. {"cwd":"D:\\nosql2h19-shop\\functions","node_version":"10.16.3"}
+[debug] [2019-12-18T18:53:21.799Z] [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2019-12-18T18:53:21.983Z] [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-12-18T18:53:22.036Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-12-18T18:53:22.038Z] [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.2.0","resolution":"D:\\nosql2h19-shop\\functions\\node_modules\\firebase-functions\\lib\\index.js"}

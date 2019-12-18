@@ -18,7 +18,9 @@ import MainTable, {
 import * as routes from "../../../constants/routes";
 import CsvImport from "../../../components/Import/CsvImport";
 import CircularLoader from "../../../components/Loader/CircularLoader";
-import {TransactionDataState} from "../../Transactions/reducer";
+import { TransactionDataState } from "../../Transactions/reducer";
+import FilterTransactions, { FilterInterface } from "./FilterTransactions";
+import { GetTransactionsUserAllOptions } from "../../Transactions/actions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,7 +53,7 @@ const ButtonGroupImport = styled.div`
   margin-top: 30px;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: flex-start;
+  justify-content: space-between;
 `;
 
 const columns: Array<MainTableColumns> = [
@@ -80,7 +82,11 @@ const columns: Array<MainTableColumns> = [
 export interface UserPropsInterface extends ListContainerStateToProps {
   id: string;
   getUser: (id: string) => void;
-  getUserTransactions: (id: string) => void;
+  getUserTransactions: (
+    id: string,
+    options?: GetTransactionsUserAllOptions | null,
+    filter?: FilterInterface
+  ) => void;
   importTransactions: (file: File, id: string) => void;
 }
 
@@ -100,7 +106,11 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
     getUserTransactions(id);
   }, []);
   const classes = useStyles();
-  console.log(user);
+
+  const handleFilter = (filter: FilterInterface) => {
+    getUserTransactions(id, null, filter);
+  };
+
   return (
     <>
       {isRequesting ? (
@@ -133,6 +143,7 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
       )}
       <ButtonGroupImport>
         <CsvImport onClick={file => importTransactions(file, id)} />
+        <FilterTransactions handleFilter={handleFilter} />
       </ButtonGroupImport>
       <Paper className={classes.root} elevation={0}>
         <MainTable
@@ -148,7 +159,7 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
             )
           }))}
           onClick={(item: TransactionDataState) =>
-              history.push(`${routes.PATH_TRANSACTIONS}/${item.id}`)
+            history.push(`${routes.PATH_TRANSACTIONS}/${item.id}`)
           }
           columns={columns}
           isRequesting={isRequestingTransactions}

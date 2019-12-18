@@ -5,10 +5,11 @@ import * as API from "./api";
 import * as userActions from "../Users/actions";
 import { fetchReqAsync, fetchResAsync } from "../../commons/api";
 
-export function* getTransactionsUserAll({ payload: { id, options } }) {
+export function* getTransactionsUserAll({ payload: { id, options, filter = {} } }) {
   try {
     const { transactions } = yield fetchReqAsync(API.getUserTransactions, {
-      id
+      id,
+      ...filter
     });
     yield put(transactionActions.getTransactionsUserAllSuccess(transactions));
     if (options?.withUser) {
