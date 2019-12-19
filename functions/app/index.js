@@ -19,6 +19,7 @@ router.use('/all-users/stat/all-time', require('./all-users_stat_all-time'))
 router.use('/all-users/stat/period', require('./all-users_stat_period'))
 
 router.use('/import', require('./import'))
+router.use('/export', require('./export'))
 
 app.use('/api', router);
 
