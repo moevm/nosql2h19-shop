@@ -4,8 +4,11 @@ import { put, takeLatest, call } from "@redux-saga/core/effects";
 import * as API from "./api";
 import * as userActions from "../Users/actions";
 import { fetchReqAsync, fetchResAsync } from "../../commons/api";
+import {exportToCsv} from "~/commons/utils";
 
-export function* getTransactionsUserAll({ payload: { id, options, filter = {} } }) {
+export function* getTransactionsUserAll({
+  payload: { id, options, filter = {} }
+}) {
   try {
     const { transactions } = yield fetchReqAsync(API.getUserTransactions, {
       id,
@@ -37,9 +40,23 @@ export function* importTransactions({ payload: { file, id } }) {
   try {
     yield fetchResAsync(API.importTransactions, file);
     yield put(transactionActions.importTransactionsSuccess());
-    yield put(transactionActions.getTransactionsUserAll(id, { withUser: true }));
+    yield put(
+      transactionActions.getTransactionsUserAll(id, { withUser: true })
+    );
   } catch (error) {
     yield put(transactionActions.importTransactionsFail(error));
+  }
+}
+
+export function* exportTransactions({ payload: { id } }) {
+  try {
+    const res = yield fetchReqAsync(API.exportTransactions, {
+      id,
+      collection: "transactions"
+    });
+    exportToCsv('transactions.csv', [Object.keys(res[0]), ...res.map(e => Object.values(e))])
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -48,11 +65,9 @@ function* watchTransactions() {
     transactionTypes.TRANSACTIONS_USER_ALL_GET,
     getTransactionsUserAll
   );
-  yield takeLatest(
-      transactionTypes.TRANSACTION_GET,
-      getTransaction
-  );
+  yield takeLatest(transactionTypes.TRANSACTION_GET, getTransaction);
   yield takeLatest(transactionTypes.TRANSACTIONS_IMPORT, importTransactions);
+  yield takeLatest(transactionTypes.TRANSACTIONS_EXPORT, exportTransactions);
 }
 
 export default watchTransactions;

@@ -62,3 +62,11 @@ export const importTransactionsFail = (error: object) => ({
   type: transactionTypes.TRANSACTIONS_IMPORT_FAIL,
   error
 });
+
+
+export const exportTransactions = (id: string) => ({
+  type: transactionTypes.TRANSACTIONS_EXPORT,
+  payload: {
+    id
+  }
+});

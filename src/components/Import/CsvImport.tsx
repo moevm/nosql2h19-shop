@@ -31,8 +31,8 @@ const CsvImport: React.FC<CsvImportInterface> = ({ onClick }) => {
         id="raised-button-file"
         onChange={handleClick}
       />
-      <label htmlFor="raised-button-file">
-        <Button variant="contained" component="span">
+      <label htmlFor="raised-button-file" >
+        <Button variant="contained" component="span" style={{ height: '100%'}}>
           Импорт
         </Button>
       </label>

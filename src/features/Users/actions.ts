@@ -47,3 +47,7 @@ export const importUsersFail = (error: object) => ({
     type: usersTypes.USERS_IMPORT_FAIL,
     error
 });
+
+export const exportUsers = () => ({
+    type: usersTypes.USERS_EXPORT,
+});

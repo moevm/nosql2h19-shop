@@ -5,6 +5,7 @@ import * as API from "./api";
 import * as mocks from "../../mocks";
 import { fetchReqAsync } from "../../commons/api";
 import { fetchResAsync } from "~/commons/api";
+import {exportToCsv} from "~/commons/utils";
 
 export function* getUsers() {
   try {
@@ -36,7 +37,19 @@ export function* importUsers({ payload: { file } }) {
   }
 }
 
+export function* exportUsers() {
+  try {
+    const res = yield fetchReqAsync(API.exportUsers, {
+      collection: "users"
+    });
+    exportToCsv('users.csv', [Object.keys(res[0]), ...res.map(e => Object.values(e))])
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* watchUsers() {
+  yield takeLatest(usersTypes.USERS_EXPORT, exportUsers);
   yield takeLatest(usersTypes.USERS_IMPORT, importUsers);
   yield takeLatest(usersTypes.USERS_GET, getUsers);
   yield takeLatest(usersTypes.USER_GET, getUser);

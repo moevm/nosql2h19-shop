@@ -56,6 +56,12 @@ const ButtonGroupImport = styled.div`
   justify-content: space-between;
 `;
 
+const UserDocs = styled.div`
+  display: grid;
+  grid-gap: 20px;
+  grid-auto-flow: column;
+`;
+
 const columns: Array<MainTableColumns> = [
   {
     name: "id",
@@ -82,12 +88,14 @@ const columns: Array<MainTableColumns> = [
 export interface UserPropsInterface extends ListContainerStateToProps {
   id: string;
   getUser: (id: string) => void;
+  getCategories: () => void;
   getUserTransactions: (
     id: string,
     options?: GetTransactionsUserAllOptions | null,
     filter?: FilterInterface
   ) => void;
   importTransactions: (file: File, id: string) => void;
+  exportTransactions: (id: string) => void;
 }
 
 const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
@@ -95,15 +103,19 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
   user,
   getUser,
   getUserTransactions,
+  getCategories,
+  categories,
   transactions,
   isRequestingTransactions,
   isRequesting,
   history,
-  importTransactions
+  importTransactions,
+  exportTransactions
 }) => {
   useEffect(() => {
     getUser(id);
     getUserTransactions(id);
+    getCategories();
   }, []);
   const classes = useStyles();
 
@@ -142,8 +154,20 @@ const User: React.FC<UserPropsInterface & RouteComponentProps<any>> = ({
         </>
       )}
       <ButtonGroupImport>
-        <CsvImport onClick={file => importTransactions(file, id)} />
-        <FilterTransactions handleFilter={handleFilter} />
+        <UserDocs>
+          <CsvImport onClick={file => importTransactions(file, id)} />
+          <Button
+            variant="contained"
+            component="span"
+            onClick={() => exportTransactions(id)}
+          >
+            Экспорт
+          </Button>
+        </UserDocs>
+        <FilterTransactions
+          handleFilter={handleFilter}
+          categories={categories}
+        />
       </ButtonGroupImport>
       <Paper className={classes.root} elevation={0}>
         <MainTable

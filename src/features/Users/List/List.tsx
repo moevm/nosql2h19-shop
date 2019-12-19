@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { Paper, Typography } from "@material-ui/core";
+import { Button, Paper, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import MainTable, {
   MainTableColumns
@@ -25,7 +25,13 @@ const useStyles = makeStyles((theme: Theme) =>
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
-`
+`;
+
+const UserDocs = styled.div`
+  display: grid;
+  grid-gap: 20px;
+  grid-auto-flow: column;
+`;
 
 const columns: Array<MainTableColumns> = [
   {
@@ -49,6 +55,7 @@ const columns: Array<MainTableColumns> = [
 interface ListProps extends ListContainerStateToProps {
   getUsers: () => void;
   importUsers: () => void;
+  exportUsers: () => void;
 }
 
 const List: React.FC<ListProps & RouteComponentProps<any>> = ({
@@ -56,6 +63,7 @@ const List: React.FC<ListProps & RouteComponentProps<any>> = ({
   users,
   isRequesting,
   importUsers,
+  exportUsers,
   history
 }) => {
   const classes = useStyles();
@@ -66,7 +74,16 @@ const List: React.FC<ListProps & RouteComponentProps<any>> = ({
     <>
       <Header>
         <Typography variant="h5">Пользователи</Typography>
-        <CsvImport onClick={importUsers} />
+        <UserDocs>
+          <CsvImport onClick={importUsers} />
+          <Button
+            variant="contained"
+            component="span"
+            onClick={exportUsers}
+          >
+            Экспорт
+          </Button>
+        </UserDocs>
       </Header>
       <Paper className={classes.root} elevation={0}>
         <MainTable

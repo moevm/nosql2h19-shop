@@ -15,6 +15,7 @@ import DatePicker, {
 } from "react-datepicker";
 import ru from "date-fns/locale/ru";
 import "react-datepicker/dist/react-datepicker.css";
+import Checkbox from "@material-ui/core/Checkbox";
 
 registerLocale("ru", ru);
 
@@ -22,7 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       marginTop: "20px",
-      backgroundColor: "white"
+      backgroundColor: "white",
+      justifySelf: "flex-end"
     }
   })
 );
@@ -55,22 +57,52 @@ const FilterDateSection = styled.div`
   margin-top: 12px;
 `;
 
+const FilterCategoriesList = styled.ul`
+  display: flex;
+  flex-flow: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+`;
+
+const FilterCategoriesItem = styled.li`
+  display: grid;
+  align-items: center;
+  grid-template-columns: 40px 1fr;
+`;
+
 export interface FilterInterface {
-    startDate: number | undefined,
-    endDate: number | undefined
+  startDate: number | undefined;
+  endDate: number | undefined;
+  categories: Array<string>;
 }
 
 export interface FilterTransactionsPropsInterface {
-  handleFilter: (filter: FilterInterface) => void
+  categories: Array<string>;
+  handleFilter: (filter: FilterInterface) => void;
 }
 
 const FilterTransactions: React.FC<FilterTransactionsPropsInterface> = ({
-  handleFilter
+  handleFilter,
+  categories
 }) => {
   const [isOpenFilter, toggleFilter] = useState(false);
   const [startDate, handleStartDateChange] = useState();
   const [endDate, handleEndDateChange] = useState();
+  const [pickedCategories, changeCategories] = useState([]);
   const classes = useStyles();
+  const handleToggleCategories = (e: any) => {
+    if (e.target.checked) {
+      // @ts-ignore
+      changeCategories([...pickedCategories, e.target.name]);
+    }
+    else
+      changeCategories(pickedCategories.filter(
+        pickedCategory => pickedCategory !== e.target.name
+      ));
+  };
 
   return (
     <FilterWrapper>
@@ -97,6 +129,19 @@ const FilterTransactions: React.FC<FilterTransactionsPropsInterface> = ({
               locale="ru"
             />
           </FilterDateSection>
+          <Typography variant="h5">По категории</Typography>
+          <FilterCategoriesList>
+            {categories.map(category => (
+              <FilterCategoriesItem key={category}>
+                <Checkbox
+                  checked={!!pickedCategories.find(item => item === category)}
+                  name={category}
+                  onChange={handleToggleCategories}
+                />{" "}
+                <span>{category}</span>
+              </FilterCategoriesItem>
+            ))}
+          </FilterCategoriesList>
           <Button
             variant="contained"
             fullWidth
@@ -104,7 +149,8 @@ const FilterTransactions: React.FC<FilterTransactionsPropsInterface> = ({
             onClick={() =>
               handleFilter({
                 startDate: startDate && startDate.getTime(),
-                endDate: endDate && endDate.getTime()
+                endDate: endDate && endDate.getTime(),
+                categories: pickedCategories
               })
             }
           >

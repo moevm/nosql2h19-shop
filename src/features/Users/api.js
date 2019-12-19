@@ -9,3 +9,7 @@ export const getUser = (data) => {
 export const importUsers = (data) => {
   return fetchAPI.postFile(`/api/import/users`, data);
 };
+
+export const exportUsers = (data) => {
+  return fetchAPI.post(`/api/export`, data);
+};

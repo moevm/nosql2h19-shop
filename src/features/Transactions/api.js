@@ -11,3 +11,7 @@ export const getUserTransaction = data => {
 export const importTransactions = (data) => {
   return fetchAPI.postFile(`/api/import/transactions`, data);
 };
+
+export const exportTransactions = (data) => {
+  return fetchAPI.post(`/api/export`, data);
+};
