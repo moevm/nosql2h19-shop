@@ -76,7 +76,7 @@ const FilterCategoriesItem = styled.li`
 export interface FilterInterface {
   startDate: number | undefined;
   endDate: number | undefined;
-  categories: Array<string>;
+  categories?: Array<string>;
 }
 
 export interface FilterTransactionsPropsInterface {
